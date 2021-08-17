@@ -13,6 +13,7 @@ Welcome to Docs Demo's documentation!
    DOCS-rst.rst
    DOCS-md.md
    DOCS-pydocs.rst
+   DOCS-openapi.rst
 
 
 Indices and tables

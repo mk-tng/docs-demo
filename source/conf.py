@@ -30,6 +30,7 @@ author = 'Martin Kilger'
 extensions = [
         "myst_parser",
         "sphinx.ext.autodoc",
+        "sphinxcontrib.openapi",
 ]
 
 # Add any paths that contain templates here, relative to this directory.

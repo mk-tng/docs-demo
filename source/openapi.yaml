@@ -1,0 +1,140 @@
+openapi: 3.0.2
+info:
+  title: Demo API
+  description: A sample API spec
+  version: 0.0.1
+paths:
+  /stuff/list:
+    get:
+      summary: List Stuff
+      description: List some stuff
+      operationId: list_stuff_stuff_list_get
+      parameters:
+        - required: false
+          schema:
+            title: Query
+            type: string
+          name: query
+          in: query
+      responses:
+        '200':
+          description: Success response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StuffListResponse'
+              example:
+                stuff_ids:
+                  - a1
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /stuff/{stuff_id}:
+    get:
+      summary: Get Stuff
+      description: Get Stuff
+      operationId: get_stuff_stuff__stuff_id__get
+      parameters:
+        - required: true
+          schema:
+            title: Stuff Id
+            type: string
+          name: stuff_id
+          in: path
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StuffResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+    put:
+      summary: Put Stuff
+      description: Put Stuff
+      operationId: put_stuff_stuff__stuff_id__put
+      parameters:
+        - required: true
+          schema:
+            title: Stuff Id
+            type: string
+          name: stuff_id
+          in: path
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StuffResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /stuff:
+    post:
+      summary: Post Stuff
+      description: Post Stuff
+      operationId: post_stuff_stuff_post
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+components:
+  schemas:
+    HTTPValidationError:
+      title: HTTPValidationError
+      type: object
+      properties:
+        detail:
+          title: Detail
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationError'
+    StuffListResponse:
+      title: StuffListResponse
+      required:
+        - stuffIds
+      type: object
+      properties:
+        stuffIds:
+          title: Stuffids
+          uniqueItems: true
+          type: array
+          items:
+            type: string
+          nullable: false
+    StuffResponse:
+      title: StuffResponse
+      required:
+        - name
+      type: object
+      properties:
+        name:
+          title: Name
+          type: string
+          nullable: false
+    ValidationError:
+      title: ValidationError
+      required:
+        - msg
+      type: object
+      properties:
+        msg:
+          title: Message
+          type: string
+externalDocs:
+  url: docs.example.test
+  description: API Reference
