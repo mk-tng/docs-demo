@@ -5,4 +5,4 @@ Sample
 ------
 
 .. automodule:: demo.mymodule
-
+   :members:
